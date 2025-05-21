@@ -1,0 +1,50 @@
+# Archivos de estado
+*.tfstate
+*.tfstate.backup
+
+# Archivos de crash de Terraform
+crash.log
+
+# Archivos de planificación
+*.tfplan
+
+# Carpetas de trabajo local
+.terraform/
+
+# Credenciales (por si acaso)
+*.tfvars
+*.tfvars.json
+*.auto.tfvars
+*.auto.tfvars.json
+*.tfbackend
+
+# Archivos de lock
+.terraform.lock.hcl
+
+# Archivos de log o temporales
+*.log
+*.bak
+*.swp
+*.tmp
+*.old
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs comunes
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos ZIP o empaquetados grandes
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+
+# Otros posibles binarios
+*.exe
+*.bin
+*.out
