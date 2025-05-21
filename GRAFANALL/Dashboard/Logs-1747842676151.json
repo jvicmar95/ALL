@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 2,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -28,12 +28,12 @@
         "uid": "P8E80F9AEF21F6940"
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 12,
         "x": 0,
         "y": 0
       },
-      "id": 4,
+      "id": 2,
       "options": {
         "dedupStrategy": "none",
         "enableLogDetails": true,
@@ -51,12 +51,12 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{filename=\"/var/log/containers/aplicacion-6b7695b7d4-dwjfq_aplicacion_flask-1a2939e7126aeada2426e1e286eca39ada7608bbc3d99ddce96689718de73331.log\"} \r\n|~ \"❌ Tarea eliminada\"\r\n",
+          "expr": "{pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea agregada\"",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Log Tarea Añadidas",
       "type": "logs"
     },
     {
@@ -85,8 +85,8 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
+        "h": 4,
+        "w": 3,
         "x": 12,
         "y": 0
       },
@@ -114,12 +114,12 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "count_over_time({filename=\"/var/log/containers/aplicacion-6b7695b7d4-dwjfq_aplicacion_flask-1a2939e7126aeada2426e1e286eca39ada7608bbc3d99ddce96689718de73331.log\"} \r\n|~ \"❌ Tarea eliminada \" [24h])",
+          "expr": "count_over_time({pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea agregada\" [24h])",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Tareas eliminadas 24h",
+      "title": "Contador tareas añadidas (24h)",
       "type": "stat"
     },
     {
@@ -128,12 +128,12 @@
         "uid": "P8E80F9AEF21F6940"
       },
       "gridPos": {
-        "h": 8,
+        "h": 4,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 4
       },
-      "id": 2,
+      "id": 4,
       "options": {
         "dedupStrategy": "none",
         "enableLogDetails": true,
@@ -151,12 +151,12 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{filename=\"/var/log/containers/aplicacion-6b7695b7d4-dwjfq_aplicacion_flask-1a2939e7126aeada2426e1e286eca39ada7608bbc3d99ddce96689718de73331.log\"} \r\n|~ \"✔ Tarea agregada\"",
+          "expr": "{pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea eliminada\"",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Alta de tareas",
+      "title": "Log Tarea Eliminada",
       "type": "logs"
     },
     {
@@ -185,10 +185,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
-        "w": 5,
+        "h": 4,
+        "w": 3,
         "x": 12,
-        "y": 8
+        "y": 4
       },
       "id": 5,
       "options": {
@@ -214,12 +214,12 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "count_over_time({filename=\"/var/log/containers/aplicacion-6b7695b7d4-dwjfq_aplicacion_flask-1a2939e7126aeada2426e1e286eca39ada7608bbc3d99ddce96689718de73331.log\"} \r\n|~ \"✔ Tarea agregada\" [24h])\r\n",
+          "expr": "count_over_time({pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea eliminada\" [24h])",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Tareas creadas 24h",
+      "title": "Contador tareas borradas(24h)",
       "type": "stat"
     },
     {
@@ -228,10 +228,10 @@
         "uid": "P8E80F9AEF21F6940"
       },
       "gridPos": {
-        "h": 12,
-        "w": 17,
+        "h": 20,
+        "w": 24,
         "x": 0,
-        "y": 16
+        "y": 8
       },
       "id": 1,
       "options": {
@@ -244,19 +244,20 @@
         "sortOrder": "Descending",
         "wrapLogMessage": false
       },
+      "pluginVersion": "10.2.3",
       "targets": [
         {
           "datasource": {
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "editorMode": "code",
-          "expr": "{filename=\"/var/log/containers/aplicacion-6b7695b7d4-dwjfq_aplicacion_flask-1a2939e7126aeada2426e1e286eca39ada7608bbc3d99ddce96689718de73331.log\"} \r\n!= \"\\\"GET /tareas HTTP/1.1\\\" 200 -\"\r\n!= \"📄 Página principal cargada\"\r\n!= \"GET /static/styles.css HTTP/1.1\"",
+          "editorMode": "builder",
+          "expr": "{pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"\"",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Logs Aplicacion (TODOS)",
       "type": "logs"
     }
   ],
@@ -267,13 +268,13 @@
     "list": []
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Logs aplicacion",
-  "uid": "f37530b3-c08e-42b1-8bbe-23f5fe8f3a06",
+  "title": "Logs",
+  "uid": "b9300ce2-0da6-433b-a976-65cb5030dfc3",
   "version": 4,
   "weekStart": ""
 }
