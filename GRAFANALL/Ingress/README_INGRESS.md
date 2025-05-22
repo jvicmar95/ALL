@@ -119,13 +119,16 @@ kubectl apply -f ingress-monitoring.yaml
 ### Opción A - Usar NodePort directamente (si conoces IP del nodo)
 
 ```txt
+kubectl get nodes -o wide
+kubectl get svc -n ingress-nginx
+
 http://<IP_DEL_NODO>:30326
 ```
 
 ### Opción B - Recomendado: usar port-forward
 
 ```bash
-kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 8080:80
+kubectl port-forward svc/ingress-nginx-controller 80:80 -n ingress-nginx
 ```
 
 Y accede a:
