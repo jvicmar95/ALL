@@ -5,8 +5,16 @@ metadata:
   namespace: monitoring
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - grafana.monitor.local
+      secretName: grafana-tls-secret
+    - hosts:
+        - prometheus.monitor.local
+      secretName: prometheus-tls-secret
   rules:
     - host: grafana.monitor.local
       http:

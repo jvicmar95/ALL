@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: flask
-          image: jvicmar95/aplicacionjorge:v3
+          image: jvicmar95/aplicacionjorge:v4
           ports:
             - containerPort: 5000
           volumeMounts:
