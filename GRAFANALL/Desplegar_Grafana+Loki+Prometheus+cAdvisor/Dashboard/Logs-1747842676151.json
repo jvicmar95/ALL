@@ -18,7 +18,7 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 1,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -51,7 +51,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea agregada\"",
+          "expr": "{pod=~\"aplicacion-.*\"} |= \"Tarea agregada\"",
           "queryType": "range",
           "refId": "A"
         }
@@ -114,7 +114,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "count_over_time({pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea agregada\" [24h])",
+          "expr": "count_over_time({pod=~\"aplicacion-.*\"} |= \"Tarea agregada\" [24h])",
           "queryType": "range",
           "refId": "A"
         }
@@ -151,7 +151,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "{pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea eliminada\"",
+          "expr": "{pod=~\"aplicacion-.*\"} |= \"Tarea eliminada\"",
           "queryType": "range",
           "refId": "A"
         }
@@ -214,7 +214,7 @@
             "uid": "P8E80F9AEF21F6940"
           },
           "editorMode": "code",
-          "expr": "count_over_time({pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"Tarea eliminada\" [24h])",
+          "expr": "count_over_time({pod=~\"aplicacion-.*\"} |= \"Tarea eliminada\" [24h])",
           "queryType": "range",
           "refId": "A"
         }
@@ -251,8 +251,8 @@
             "type": "loki",
             "uid": "P8E80F9AEF21F6940"
           },
-          "editorMode": "builder",
-          "expr": "{pod=~\"aplicacion-6b7695b7d4-.*\"} |= \"\"",
+          "editorMode": "code",
+          "expr": "{pod=~\"aplicacion-.*\"} |= \"\"",
           "queryType": "range",
           "refId": "A"
         }
@@ -275,6 +275,6 @@
   "timezone": "",
   "title": "Logs",
   "uid": "b9300ce2-0da6-433b-a976-65cb5030dfc3",
-  "version": 4,
+  "version": 3,
   "weekStart": ""
 }
