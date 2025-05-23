@@ -26,6 +26,8 @@ kubectl get svc -n ingress-nginx
 kubectl create ns monitoring
 kubectl apply -f ingress-monitoring.yaml
 kubectl apply -f ingress-aplicacion.yaml
+kubectl apply -f ldap-ingress.yaml
+kubectl apply -f keycloak-ingress.yaml
 ```
 
 ---
