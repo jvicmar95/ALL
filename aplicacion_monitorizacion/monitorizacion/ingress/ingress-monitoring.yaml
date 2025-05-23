@@ -4,12 +4,8 @@ metadata:
   name: ingress-grafana-prometheus
   namespace: monitoring
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/server-snippet: |
-      location = /logout {
-        return 302 https://grafana.monitor.local/login;
-      }
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   tls:
@@ -23,8 +19,8 @@ spec:
     - host: grafana.monitor.local
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: grafana
@@ -33,8 +29,8 @@ spec:
     - host: prometheus.monitor.local
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: prometheus
@@ -43,8 +39,8 @@ spec:
     - host: promtail.monitor.local
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: promtail
@@ -53,8 +49,8 @@ spec:
     - host: loki.monitor.local
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: loki
@@ -63,8 +59,8 @@ spec:
     - host: cadvisor.monitor.local
       http:
         paths:
-          - path: /
-            pathType: Prefix
+          - path: /(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: cadvisor

@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ldap-ingress
+  namespace: ldap
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: selfsigned-clusterissuer
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - ldap.monitor.local
+      secretName: ldap-tls
+  rules:
+    - host: ldap.monitor.local
+      http:
+        paths:
+          - path: /(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: phpldapadmin
+                port:
+                  number: 80

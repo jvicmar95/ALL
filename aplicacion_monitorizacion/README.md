@@ -47,7 +47,7 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --set i
 kubectl apply -f clusterissuer-selfsigned.yaml
 kubectl apply -f grafana-certificate.yaml
 kubectl apply -f prometheus-certificate.yaml
-kubectl apply -f aplicacion-certificate.yaml
+kubectl apply -f aplicación-certificate.yaml
 kubectl get secret grafana-tls-secret -n monitoring
 ```
 
@@ -145,7 +145,6 @@ kubectl apply -f deployment-aplicacion.yaml -n aplicacion
 ```
 
 ---
-kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 443:443
 
 ## ✅ Todo listo
 

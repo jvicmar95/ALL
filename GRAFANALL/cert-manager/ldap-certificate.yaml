@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ldap-cert
+  namespace: ldap
+spec:
+  secretName: ldap-tls
+  duration: 8760h # 1 año
+  renewBefore: 360h
+  subject:
+    organizations:
+      - ExampleOrg
+  commonName: ldap.monitor.local
+  dnsNames:
+    - ldap.monitor.local
+  issuerRef:
+    name: selfsigned-clusterissuer
+    kind: ClusterIssuer

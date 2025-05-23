@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openldap
+  namespace: ldap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: openldap
+  template:
+    metadata:
+      labels:
+        app: openldap
+    spec:
+      containers:
+        - name: openldap
+          image: osixia/openldap:1.5.0
+          ports:
+            - containerPort: 389
+          env:
+            - name: LDAP_ORGANISATION
+              value: "ExampleOrg"
+            - name: LDAP_DOMAIN
+              value: "example.org"
+            - name: LDAP_ADMIN_PASSWORD
+              value: adminpassword
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openldap
+  namespace: ldap
+spec:
+  selector:
+    app: openldap
+  ports:
+    - name: ldap
+      port: 389
+      targetPort: 389

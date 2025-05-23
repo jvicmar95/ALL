@@ -22,8 +22,8 @@ docker info  # Verifica que estás logueado con el usuario correcto
 ### 3. Construcción y subida de la imagen
 
 ```bash
-docker build -t jvicmar95/aplicacionjorge:v4 .
-docker push jvicmar95/aplicacionjorge:v4
+docker build -t jvicmar95/aplicacionjorge:v1 .
+docker push jvicmar95/aplicacionjorge:v1
 ```
 
 ---
