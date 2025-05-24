@@ -1,2 +1,3 @@
 flask
-gunicorn
+ldap3
+werkzeug

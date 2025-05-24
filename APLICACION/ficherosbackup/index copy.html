@@ -77,6 +77,12 @@
 </head>
 <body>
   <header>
+    {% if session['usuario'] %}
+  <div style="float: right; margin-right: 20px;">
+    Bienvenido, {{ session['usuario'] }} |
+    <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+  </div>
+{% endif %}
     <nav class="navbar">
       <a href="{{ url_for('home') }}" class="nav-link">Home</a>
       <a href="{{ url_for('index') }}" class="nav-link">Tareas</a>

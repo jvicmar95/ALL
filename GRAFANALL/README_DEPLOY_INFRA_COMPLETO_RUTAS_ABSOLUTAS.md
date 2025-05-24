@@ -221,3 +221,7 @@ Use Kerberos for password authentication Off
 ---
 
 🎉 ¡Tu entorno está desplegado e integrado correctamente!
+
+
+Para autenticacion con google
+Vamos a neustro realm viewnext
