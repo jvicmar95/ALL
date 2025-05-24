@@ -3,6 +3,9 @@ kubectl create namespace keycloak
 kubectl create namespace monitoring
 kubectl create namespace cert-manager
 kubectl create namespace aplicacion
+kubectl create namespace argocd
+
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
 kubectl edit svc ingress-nginx-controller -n ingress-nginx
@@ -17,6 +20,7 @@ kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\cert-manager\pr
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\cert-manager\keycloak-certificate.yaml
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\cert-manager\ldap-certificate.yaml
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\cert-manager\aplicacion-certificate.yaml
+kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\cert-manager\argocd-certificate.yaml
 
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\ldap\namespace-ldap.yaml
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\ldap\openldap-secret.yaml
@@ -64,5 +68,8 @@ kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\Ingress\ldap-in
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\Ingress\keycloak-ingress.yaml
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\Ingress\ingress-monitoring.yaml
 kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\Ingress\ingress-aplicacion.yaml
+kubectl apply -f C:\Users\0020360\Documents\DEVOPS\ALL\GRAFANALL\Ingress\argocd-ingress.yaml
+
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 
 kubectl port-forward -n ingress-nginx svc/ingress-nginx-controller 443:443
